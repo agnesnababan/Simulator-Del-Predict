@@ -3,10 +3,13 @@ from keras.models import load_model
 import sklearn
 import pandas as pd
 import tensorflow as tf
+import pickle
+
 
 app = Flask(__name__)
 # Load model from file
 model = load_model('ann.h5')
+
 # load data
 data = pd.read_csv('data_without_norm.csv')
 
@@ -27,6 +30,18 @@ def home():
     school = data['Nama Sekolah'].unique().tolist()
     return render_template('index.html', school=school)
 
+# Define the svr route
+@app.route('/svr')
+def svr():
+    # get unique school names
+    school = data['Nama Sekolah'].unique().tolist()
+    return render_template('svr-view.html', school=school)
+# Define the ann route
+@app.route('/ann')
+def ann():
+    # get unique school names
+    school = data['Nama Sekolah'].unique().tolist()
+    return render_template('ann-view.html', school=school)
 # Define the prediction route
 @app.route('/predict', methods=['GET','POST'])
 def predict():
@@ -42,7 +57,7 @@ def predict():
     # round prediction to nearest integer
     prediction = int(prediction)
     # return prediction to user
-    return render_template('index.html', schools=data['Nama Sekolah'].unique().tolist(), prediction=prediction, school=school_name)
+    return render_template('svr-view.html', schools=data['Nama Sekolah'].unique().tolist(), prediction=prediction, school=school_name)
 
 if __name__ == '__main__':
     app.run(debug=True)
