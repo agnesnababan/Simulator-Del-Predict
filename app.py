@@ -4,6 +4,7 @@ import sklearn
 import pandas as pd
 import tensorflow as tf
 import pickle
+import numpy as np
 
 
 app = Flask(__name__)
@@ -67,15 +68,16 @@ def predict_svr():
     school_name = request.form['school']
     print('Nama sekolah yang dipilih : ',school_name)
     # get previous enrollments
-    enrollments = get_previous_enrollments(school_name)
+    enrollments = np.array(get_previous_enrollments(school_name))
     print('Jumlah pendaftar tahun sebelumnya',enrollments)
     # make prediction for 2021
-    prediction = model_svr.predict([enrollments])[0][0]
+    prediction = model_svr.predict(enrollments.reshape(1, -1))[0]
     print('Hasil prediksi',prediction)
     # round prediction to nearest integer
     prediction = int(prediction)
     # return prediction to user
     return render_template('svr-view.html', schools=data['Nama Sekolah'].unique().tolist(), prediction=prediction, school=school_name)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
