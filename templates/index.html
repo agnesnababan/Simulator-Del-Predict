@@ -12,19 +12,23 @@
 </head>
 <body>
     <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
                 <img src="{{ url_for('static', filename='image/logo.png')}}" alt="" width="200" height="auto">
             </a>
-            <a class="navbar-brand" href="{{ url_for('svr') }}">
-                SVR
-            </a>
-            <a class="navbar-brand" href="{{ url_for('ann') }}">
-                ANN
-            </a>
+            <div class="algoritma-ml">
+                <a class="navbar-brand" href="{{ url_for('svr') }}">
+                    SVR
+                </a>
+                <a class="navbar-brand" href="{{ url_for('ann') }}">
+                    ANN
+                </a>
             </div>
+        </div>
     </nav> 
+
 
     <!-- Main body -->
     <div class="main-content">

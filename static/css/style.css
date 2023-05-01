@@ -33,3 +33,10 @@
     background-color: #3f1a65;
     color: #ffff;
 }
+
+.algoritma-ml .navbar-brand{
+    color: #ffff;
+    padding: 10px;
+    margin: 50px;
+    font-family: Cambria, Cochin, Georgia, serif;
+}

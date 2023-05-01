@@ -8,7 +8,8 @@ import pickle
 
 app = Flask(__name__)
 # Load model from file
-model = load_model('ann.h5')
+model_ann = load_model('ann.h5')
+model_svr = pickle.load(open('svr.pkl','rb'))
 
 # load data
 data = pd.read_csv('data_without_norm.csv')
@@ -27,8 +28,8 @@ def get_previous_enrollments(school_name):
 @app.route('/')
 def home():
     # get unique school names
-    school = data['Nama Sekolah'].unique().tolist()
-    return render_template('index.html', school=school)
+    # school = data['Nama Sekolah'].unique().tolist()
+    return render_template('index.html')
 
 # Define the svr route
 @app.route('/svr')
@@ -43,8 +44,8 @@ def ann():
     school = data['Nama Sekolah'].unique().tolist()
     return render_template('ann-view.html', school=school)
 # Define the prediction route
-@app.route('/predict', methods=['GET','POST'])
-def predict():
+@app.route('/predict-ann', methods=['GET','POST'])
+def predict_ann():
     # get user input
     school_name = request.form['school']
     print('Nama sekolah yang dipilih : ',school_name)
@@ -52,7 +53,24 @@ def predict():
     enrollments = get_previous_enrollments(school_name)
     print('Jumlah pendaftar tahun sebelumnya',enrollments)
     # make prediction for 2021
-    prediction = model.predict([enrollments])[0][0]
+    prediction = model_ann.predict([enrollments])[0][0]
+    print('Hasil prediksi',prediction)
+    # round prediction to nearest integer
+    prediction = int(prediction)
+    # return prediction to user
+    return render_template('svr-view.html', schools=data['Nama Sekolah'].unique().tolist(), prediction=prediction, school=school_name)
+
+# Define the prediction route
+@app.route('/predict-svr', methods=['GET','POST'])
+def predict_svr():
+    # get user input
+    school_name = request.form['school']
+    print('Nama sekolah yang dipilih : ',school_name)
+    # get previous enrollments
+    enrollments = get_previous_enrollments(school_name)
+    print('Jumlah pendaftar tahun sebelumnya',enrollments)
+    # make prediction for 2021
+    prediction = model_svr.predict([enrollments])[0][0]
     print('Hasil prediksi',prediction)
     # round prediction to nearest integer
     prediction = int(prediction)

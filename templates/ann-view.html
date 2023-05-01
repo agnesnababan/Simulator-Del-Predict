@@ -14,16 +14,18 @@
     <!-- Navbar -->
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
                 <img src="{{ url_for('static', filename='image/logo.png')}}" alt="" width="200" height="auto">
             </a>
-            <a class="navbar-brand" href="{{ url_for('svr') }}">
-                SVR
-            </a>
-            <a class="navbar-brand" href="{{ url_for('ann') }}">
-                ANN
-            </a>
+            <div class="algoritma-ml">
+                <a class="navbar-brand" href="{{ url_for('svr') }}">
+                    SVR
+                </a>
+                <a class="navbar-brand" href="{{ url_for('ann') }}">
+                    ANN
+                </a>
             </div>
+        </div>
     </nav> 
 
     <!-- Main body -->
@@ -31,7 +33,7 @@
         <div class="intro">
             <h3>Prediksi Jumlah Pendaftar Calon Mahasiswa 2023</h3>
         </div>
-        <form action="{{ url_for('predict') }}" method="post">
+        <form action="{{ url_for('predict_ann') }}" method="post">
             <div class="school-name">
                 <div class="col-2">
                     <p>Nama Sekolah</p>
