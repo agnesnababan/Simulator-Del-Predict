@@ -53,7 +53,7 @@ def predict_ann():
     # get previous enrollments
     enrollments = get_previous_enrollments(school_name)
     print('Jumlah pendaftar tahun sebelumnya',enrollments)
-    # make prediction for 2021
+    # make prediction for 2023
     prediction = model_ann.predict([enrollments])[0][0]
     print('Hasil prediksi',prediction)
     # round prediction to nearest integer
@@ -70,7 +70,7 @@ def predict_svr():
     # get previous enrollments
     enrollments = np.array(get_previous_enrollments(school_name))
     print('Jumlah pendaftar tahun sebelumnya',enrollments)
-    # make prediction for 2021
+    # make prediction for 2023
     prediction = model_svr.predict(enrollments.reshape(1, -1))[0]
     print('Hasil prediksi',prediction)
     # round prediction to nearest integer
