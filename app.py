@@ -6,6 +6,7 @@ import tensorflow as tf
 import pickle
 import numpy as np
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder,MinMaxScaler
 
 
 app = Flask(__name__)
@@ -48,42 +49,60 @@ def ann():
     # get unique school names
     school = data['Nama Sekolah'].unique().tolist()
     return render_template('ann-view.html', school=school)
+# # Define the prediction route
+# @app.route('/predict-ann', methods=['GET','POST'])
+# def predict_ann():
+#     # get user input
+#     school_name = request.form['school']
+#     print('Nama sekolah yang dipilih : ',school_name)
+#     # get previous enrollments
+#     enrollments = get_previous_enrollments(school_name)
+#     print('Jumlah pendaftar tahun sebelumnya',enrollments)
+#     # make prediction_ann for 2023
+#     prediction_ann = model_ann.predict(enrollments.reshape(1, -1))[0]
+#     #inverse transform the prediction
+#     prediction_ann = scaler.inverse_transform(prediction_ann.reshape(-1, 1))
+#     print('Hasil prediksi', prediction_ann)
+#     #round the prediction to nearest integer and ensure it is positive
+#     prediction_ann = int(abs(prediction_ann[0][0]))
+
+#     return render_template('ann-view.html', schools=data['Nama Sekolah'].unique().tolist(), prediction_ann=prediction_ann, school=school_name, enrollments = enrollments)
+
 # Define the prediction route
 @app.route('/predict-ann', methods=['GET','POST'])
 def predict_ann():
+    scaler = MinMaxScaler()
     # get user input
     school_name = request.form['school']
-    print('Nama sekolah yang dipilih : ',school_name)
-    # get previous enrollments
-    enrollments = get_previous_enrollments(school_name)
-    print('Jumlah pendaftar tahun sebelumnya',enrollments)
-    # make prediction_ann for 2023
-    prediction_ann = model_ann.predict(enrollments.reshape(1, -1))[0]
-    #inverse transform the prediction
-    prediction_ann = scaler.inverse_transform(prediction_ann.reshape(-1, 1))
-    print('Hasil prediksi', prediction_ann)
+    school_data = data[data['Nama Sekolah'] == school_name]
+    X = data.iloc[:, 1:].values
+    X= scaler.fit_transform(X)
+    
+    X_pred = school_data.iloc[:,1:].values
+    
+    X_forecast_norm = scaler.transform(X_pred)
+    y_forecast = model_ann.predict(X_forecast_norm)
     #round the prediction to nearest integer and ensure it is positive
-    prediction_ann = int(abs(prediction_ann[0][0]))
-
-    return render_template('ann-view.html', schools=data['Nama Sekolah'].unique().tolist(), prediction_ann=prediction_ann, school=school_name)
+    y_forecast = int(y_forecast)
+    return render_template('ann-view.html', prediction_ann=y_forecast, school_name=school_name, enrollments = X_forecast_norm)
 
 # Define the prediction route
 @app.route('/predict-svr', methods=['GET','POST'])
 def predict_svr():
+    scaler = MinMaxScaler()
     # get user input
     school_name = request.form['school']
-    print('Nama sekolah yang dipilih : ',school_name)
-    # get previous enrollments
-    enrollments = np.array(get_previous_enrollments(school_name))
-    print('Jumlah pendaftar tahun sebelumnya',enrollments)
-    # make prediction_svr for 2023
-    prediction_svr = model_svr.predict(enrollments.reshape(1, -1))[0]
-    # inverse transform the prediction
-    prediction_svr = scaler.inverse_transform(prediction_svr.reshape(-1, 1))
-    print('Hasil prediksi', prediction_svr)
+    school_data = data[data['Nama Sekolah'] == school_name]
+    X = data.iloc[:, 1:].values
+    X= scaler.fit_transform(X)
+    
+    X_pred = school_data.iloc[:,1:].values
+    
+    X_forecast_norm = scaler.transform(X_pred)
+    y_forecast = model_svr.predict(X_forecast_norm)
     #round the prediction to nearest integer and ensure it is positive
-    prediction_svr = int(abs(prediction_svr[0][0]))
-    return render_template('svr-view.html', schools=data['Nama Sekolah'].unique().tolist(), prediction_svr=prediction_svr, school=school_name)
+    y_forecast = int(y_forecast)
+    return render_template('svr-view.html', prediction_svr=y_forecast, school_name=school_name, enrollments = X_forecast_norm)
 
 
 if __name__ == '__main__':
