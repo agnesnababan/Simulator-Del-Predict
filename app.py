@@ -5,8 +5,7 @@ import pandas as pd
 import tensorflow as tf
 import pickle
 import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import LabelEncoder,MinMaxScaler
+from sklearn.preprocessing import LabelEncoder,MinMaxScaler,StandardScaler
 
 
 app = Flask(__name__)

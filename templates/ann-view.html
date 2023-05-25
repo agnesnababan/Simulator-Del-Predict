@@ -236,9 +236,12 @@
             </div>
         </form>
 
-        <div class="hasil" >
+        {% if school_name %}
+        <div class="hasil">
             <p>Prediksi jumlah pendaftar calon mahasiswa baru tahun 2023 dari {{ school_name }} adalah {{ prediction_ann}}.</p>
         </div>
+        {% endif %}
+        
     </div>
 </body>
 </html>
