@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Del Predict</title>
+
+    <!-- style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- icon -->
+    <link rel="shortcut icon" href="../static/image/icon.svg">
+</head>
+<body>
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">
+                <img src="{{ url_for('static', filename='image/logo.png')}}" alt="" width="200" height="auto">
+            </a>
+            <div class="algoritma-ml">
+                <a class="navbar-brand" href="{{ url_for('svr') }}">
+                    SVR
+                </a>
+                <a class="navbar-brand" href="{{ url_for('ann') }}">
+                    ANN
+                </a>
+            </div>
+        </div>
+    </nav> 
+
+
+    <!-- Main body -->
+    <div class="main-content">
+        <div class="intro">
+            <h3>Prediksi Jumlah Pendaftar Calon Mahasiswa 2023</h3>
+            <p>Pada aplikasi web ini akan dilakukan prediksi jumlah pendaftar calon mahasiswa IT Del untuk tahun 2023.
+               Prediksi dilakukan dengan mempelajari data yang berisi jumlah pendaftar mulai tahun 2016 sampai 2022.</p>
+        </div>
+        <div class="intro">
+            <h3>Prediksi Jumlah Pendaftar Calon Mahasiswa 2023</h3>
+            <p>Pada aplikasi web ini akan dilakukan prediksi jumlah pendaftar calon mahasiswa IT Del untuk tahun 2023.
+               Prediksi dilakukan dengan mempelajari data yang berisi jumlah pendaftar mulai tahun 2016 sampai 2022.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -11,7 +11,7 @@ from sklearn.preprocessing import LabelEncoder,MinMaxScaler,StandardScaler
 app = Flask(__name__)
 # Load model from file
 model_ann = load_model('ann.h5')
-model_svr = pickle.load(open('svr.pkl','rb'))
+model_svr = pickle.load(open('svr-model-new.pkl','rb'))
 scaler = StandardScaler()
 
 # load data
