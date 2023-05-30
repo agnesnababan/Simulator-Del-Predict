@@ -5,14 +5,14 @@ import pandas as pd
 import tensorflow as tf
 import pickle
 import numpy as np
-from sklearn.preprocessing import LabelEncoder,MinMaxScaler,StandardScaler
+from sklearn.preprocessing import LabelEncoder,MinMaxScaler
 
 
 app = Flask(__name__)
 # Load model from file
 model_ann = load_model('ann.h5')
 model_svr = pickle.load(open('svr-model-new.pkl','rb'))
-scaler = StandardScaler()
+scaler = MinMaxScaler()
 
 # load data
 data = pd.read_csv('data_without_norm.csv')
