@@ -5,7 +5,7 @@ import pandas as pd
 import tensorflow as tf
 import pickle
 import numpy as np
-from sklearn.preprocessing import LabelEncoder,MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler
 
 
 app = Flask(__name__)
@@ -48,24 +48,6 @@ def ann():
     # get unique school names
     school = data['Nama Sekolah'].unique().tolist()
     return render_template('ann-view.html', school=school)
-# # Define the prediction route
-# @app.route('/predict-ann', methods=['GET','POST'])
-# def predict_ann():
-#     # get user input
-#     school_name = request.form['school']
-#     print('Nama sekolah yang dipilih : ',school_name)
-#     # get previous enrollments
-#     enrollments = get_previous_enrollments(school_name)
-#     print('Jumlah pendaftar tahun sebelumnya',enrollments)
-#     # make prediction_ann for 2023
-#     prediction_ann = model_ann.predict(enrollments.reshape(1, -1))[0]
-#     #inverse transform the prediction
-#     prediction_ann = scaler.inverse_transform(prediction_ann.reshape(-1, 1))
-#     print('Hasil prediksi', prediction_ann)
-#     #round the prediction to nearest integer and ensure it is positive
-#     prediction_ann = int(abs(prediction_ann[0][0]))
-
-#     return render_template('ann-view.html', schools=data['Nama Sekolah'].unique().tolist(), prediction_ann=prediction_ann, school=school_name, enrollments = enrollments)
 
 # Define the prediction route
 @app.route('/predict-ann', methods=['GET','POST'])
