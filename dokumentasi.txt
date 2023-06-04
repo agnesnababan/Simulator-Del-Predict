@@ -1,0 +1,42 @@
+Kode program ini adalah definisi dari sebuah fungsi yang disebut "get_previous_enrollments". Fungsi ini memiliki satu parameter yaitu "school_name" yang digunakan untuk mencari data pendaftaran sebelumnya untuk sekolah yang diinginkan.
+
+Berikut adalah langkah-langkah yang dilakukan oleh fungsi ini:
+
+Menerima parameter "school_name" yang merupakan nama sekolah yang ingin dicari data pendaftarannya.
+Mengambil data untuk sekolah yang dipilih dari variabel "data" (yang diasumsikan sebagai DataFrame yang berisi data pendaftaran) menggunakan operasi slicing dengan kondisi "data['Nama Sekolah'] == school_name". Hal ini akan menghasilkan DataFrame baru yang hanya berisi data untuk sekolah yang dipilih.
+Mengambil kolom-kolom yang berisi data pendaftaran dari tahun 2016 hingga 2022 menggunakan operasi slicing "school_data.iloc[:, 1:]". Ini menghilangkan kolom pertama yang diasumsikan berisi nama sekolah dan menghasilkan array 2 dimensi.
+Mereshape array 2 dimensi menjadi array 1 dimensi menggunakan metode "reshape(-1, 1)". Ini dilakukan agar data pendaftaran dapat diteruskan ke scaler (asumsi bahwa scaler adalah objek scaler yang telah didefinisikan sebelumnya).
+Mencetak data pendaftaran sebelumnya sebelum dinormalisasi menggunakan pernyataan print("ini enrollment: ", enrollment).
+Melakukan normalisasi pada data pendaftaran menggunakan scaler dengan memanggil metode "fit_transform(enrollment)". Hasil normalisasi disimpan dalam variabel "enrollments".
+Mencetak data sekolah yang telah dinormalisasi menggunakan pernyataan print("Data sekolah yang di normalisasi: ", enrollments).
+Mengembalikan data pendaftaran yang telah dinormalisasi dari fungsi menggunakan pernyataan "return enrollments".
+Kode program ini diasumsikan menggunakan objek "scaler" yang telah didefinisikan sebelumnya, tetapi implementasi scaler dan definisi variabel "data" tidak terlihat dalam kode yang diberikan
+
+Route "/svr":
+
+Fungsi yang terhubung dengan rute ini adalah "svr()".
+Ketika rute ini diakses, fungsi "svr()" akan dieksekusi.
+Pada fungsi "svr()", langkah pertama yang dilakukan adalah mendapatkan daftar nama sekolah yang unik dari data. Ini dilakukan dengan menggunakan metode "unique()" pada kolom "Nama Sekolah" dari variabel "data" yang diasumsikan sebagai DataFrame.
+Daftar nama sekolah yang unik kemudian dikonversi menjadi daftar dan disimpan dalam variabel "school".
+Fungsi "render_template()" digunakan untuk merender template HTML yang terkait dengan rute "/svr". Template tersebut mungkin berisi tampilan dan elemen interaktif terkait metode support vector regression (SVR) dalam konteks aplikasi ini. Variabel "school" akan dikirim ke template sebagai argumen dan dapat digunakan untuk menampilkan daftar nama sekolah.
+Hasil render template dikembalikan sebagai respons
+
+
+Kode program yang diberikan adalah pengaturan rute untuk prediksi menggunakan jaringan saraf tiruan (artificial neural network/ANN) dalam aplikasi web menggunakan kerangka kerja Flask.
+
+Berikut adalah penjelasan singkat mengenai kode program tersebut:
+
+Route "/predict-ann":
+Fungsi yang terhubung dengan rute ini adalah "predict_ann()".
+Rute ini mendukung metode GET dan POST, yang berarti dapat menerima permintaan dari pengguna melalui form HTML atau parameter URL.
+Pada awal fungsi, objek scaler dari kelas MinMaxScaler() didefinisikan.
+Fungsi kemudian mengambil input pengguna dari form HTML dengan menggunakan pernyataan "request.form['school']". Nilai yang diambil adalah nama sekolah yang dipilih oleh pengguna.
+Data sekolah yang dipilih diambil dari variabel "data" dengan kondisi "data['Nama Sekolah'] == school_name". Hal ini menghasilkan DataFrame yang berisi data untuk sekolah yang dipilih.
+Selanjutnya, variabel "X" diinisialisasi dengan data pendaftaran dari seluruh sekolah menggunakan pernyataan "X = data.iloc[:, 1:].values". Ini menghilangkan kolom pertama yang diasumsikan berisi nama sekolah dan menghasilkan array yang berisi data pendaftaran untuk semua sekolah.
+Data pendaftaran "X" dinormalisasi menggunakan objek scaler dengan pernyataan "X = scaler.fit_transform(X)".
+Data pendaftaran untuk sekolah yang dipilih, "X_pred", diambil dari "school_data" dengan pernyataan "X_pred = school_data.iloc[:, 1:].values".
+Data pendaftaran untuk sekolah yang dipilih "X_pred" dinormalisasi menggunakan objek scaler yang sama dengan pernyataan "X_forecast_norm = scaler.transform(X_pred)".
+Melakukan prediksi menggunakan model ANN yang diasumsikan telah didefinisikan sebelumnya. Prediksi dilakukan pada data pendaftaran yang telah dinormalisasi "X_forecast_norm" dengan pernyataan "y_forecast = model_ann.predict(X_forecast_norm)".
+Prediksi "y_forecast" dibulatkan ke angka bulat terdekat dan dipastikan positif menggunakan pernyataan "y_forecast = int(y_forecast)".
+Mengembalikan respons dengan merender template HTML "ann-view.html". Variabel "prediction_ann" akan digunakan untuk menampilkan hasil prediksi, "school_name" akan digunakan untuk menampilkan nama sekolah yang dipilih, dan "enrollments" akan digunakan untuk menampilkan data pendaftaran yang telah dinormalisasi.
+Dengan menggunakan rute "/predict-ann", ketika pengguna mengirimkan form dengan memilih sekolah, aplikasi akan menjalankan model ANN untuk melakukan prediksi pada data pendaftaran sekolah yang dipilih. Hasil prediksi akan ditampilkan di halaman "ann-view.html" bersama dengan informasi lainnya seperti nama sekolah dan data pendaftaran yang telah dinormalisasi.
