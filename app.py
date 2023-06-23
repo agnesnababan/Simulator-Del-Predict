@@ -16,7 +16,7 @@ scaler = MinMaxScaler()
 
 # load data
 data = pd.read_csv('data_without_norm.csv')
-
+# mangasi
 # define function to get previous year enrollments
 def get_previous_enrollments(school_name):
     # get data for selected school

@@ -1,260 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Del Predict</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- style -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet" type="text/css">
+  <title>Del Predict</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-     <!-- icon -->
-     <link rel="shortcut icon" href="../static/image/icon.svg">
-     
+ <!-- Favicons -->
+ <link href="../static/image/icon.svg" rel="icon">
+ <link href="../static/image/icon.svg" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
 </head>
+
 <body>
-     <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#page-top">
-                <a class="navbar-brand" href="{{ url_for('home') }}">
-                    <img src="{{ url_for('static', filename='image/logo.png')}}" alt="" width="200" height="auto">
-                </a>
-            </a>
-            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="navbar-brand nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('svr') }}">
-                        SVR
-                    </a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class=" navbar-brand nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('ann') }}">ANN</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Main body -->
-    <!-- Contact Section-->
-    <section class="page-section" id="contact">
-        <div class="container">
-            <!-- Contact Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">...</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-star">Prediksi ANN</i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Contact Section Form-->
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-xl-7">
-                    <form action="{{ url_for('predict_ann') }}" method="post">
-                        <!-- Name input-->
-                        <div class="form-floating mb-3">
-                            <select name="school" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>Pilih Nama Sekolah</option>
-                                <option value="SMA ABDI SEJATI PERDAGANGAN">SMA ABDI SEJATI PERDAGANGAN</option>
-                                <option value="SMA ADVENT PEMATANG SIANTAR">SMA ADVENT PEMATANG SIANTAR</option>
-                                <option value="SMA ASISI PEMATANG SIANTAR">SMA ASISI PEMATANG SIANTAR</option>
-                                <option value="SMA BINTANG TIMUR BALIGE">SMA BINTANG TIMUR BALIGE</option>
-                                <option value="SMA BINTANG TIMUR PEMATANG SIANTAR">SMA BINTANG TIMUR PEMATANG SIANTAR</option>
-                                <option value="SMA BRIGJEN KATAMSO 1 MEDAN">SMA BRIGJEN KATAMSO 1 MEDAN</option>
-                                <option value="SMA BUDI MULIA PEMATANG SIANTAR">SMA BUDI MULIA PEMATANG SIANTAR</option>
-                                <option value="SMA BUDI MURNI 1 MEDAN">SMA BUDI MURNI 1 MEDAN</option>
-                                <option value="SMA BUDI MURNI 2 MEDAN">SMA BUDI MURNI 2 MEDAN</option>
-                                <option value="SMA CAHAYA MEDAN">SMA CAHAYA MEDAN</option>
-                                <option value="SMA CINTA RAKYAT PEMATANG SIANTAR">SMA CINTA RAKYAT PEMATANG SIANTAR</option>
-                                <option value="SMA FRANSISKUS SIBOLGA">SMA FRANSISKUS SIBOLGA</option>
-                                <option value="SMA GLOBAL PERSADA MANDIRI">SMA GLOBAL PERSADA MANDIRI</option>
-                                <option value="SMA KALAM KUDUS MEDAN">SMA KALAM KUDUS MEDAN</option>
-                                <option value="SMA KAMPUS FKIP HKBP NOMENSEN">SMA KAMPUS FKIP HKBP NOMENSEN</option>
-                                <option value="SMA KARTIKA JAYA 1-4">SMA KARTIKA JAYA 1-4</option>
-                                <option value="SMA KATOLIK KABANJAHE">SMA KATOLIK KABANJAHE</option>
-                                <option value="SMA KATOLIK SIBOLGA">SMA KATOLIK SIBOLGA</option>
-                                <option value="SMA KATOLIK TRISAKTI MEDAN">SMA KATOLIK TRISAKTI MEDAN</option>
-                                <option value="SMA KRISTEN IMMANUEL">SMA KRISTEN IMMANUEL</option>
-                                <option value="SMA KRISTEN KALAM KUDUS PEMATANG SIANTAR">SMA KRISTEN KALAM KUDUS PEMATANG SIANTAR</option>
-                                <option value="SMA MANDIRI TANGERANG">SMA MANDIRI TANGERANG</option>
-                                <option value="SMA MARKUS MEDAN">SMA MARKUS MEDAN</option>
-                                <option value="SMA MARS PEMATANG SIANTAR">SMA MARS PEMATANG SIANTAR</option>
-                                <option value="SMA METHODIST 1 MEDAN">SMA METHODIST 1 MEDAN</option>
-                                <option value="SMA METHODIST 2 MEDAN">SMA METHODIST 2 MEDAN</option>
-                                <option value="SMA METHODIST 8 MEDAN">SMA METHODIST 8 MEDAN</option>
-                                <option value="SMA METHODIST-AN PANCUR BATU">SMA METHODIST-AN PANCUR BATU</option>
-                                <option value="SMA NASRANI 1 MEDAN">SMA NASRANI 1 MEDAN</option>
-                                <option value="SMA NEGERI 1 BABELAN">SMA NEGERI 1 BABELAN</option>
-                                <option value="SMA NEGERI 1 BALIGE">SMA NEGERI 1 BALIGE</option>
-                                <option value="SMA NEGERI 1 BANDAR">SMA NEGERI 1 BANDAR</option>
-                                <option value="SMA NEGERI 1 BINJAI">SMA NEGERI 1 BINJAI</option>
-                                <option value="SMA NEGERI 1 DOLOK PANRIBUAN">SMA NEGERI 1 DOLOK PANRIBUAN</option>
-                                <option value="SMA NEGERI 1 DOLOK PARDAMEAN">SMA NEGERI 1 DOLOK PARDAMEAN</option>
-                                <option value="SMA NEGERI 1 DOLOK SANGGUL">SMA NEGERI 1 DOLOK SANGGUL</option>
-                                <option value="SMA NEGERI 1 GALANG DELI SERDANG">SMA NEGERI 1 GALANG DELI SERDANG</option>
-                                <option value="SMA NEGERI 1 GIRSANG SIPANGAN BOLON">SMA NEGERI 1 GIRSANG SIPANGAN BOLON</option>
-                                <option value="SMA NEGERI 1 HABINSARAN">SMA NEGERI 1 HABINSARAN</option>
-                                <option value="SMA NEGERI 1 KABANJAHE">SMA NEGERI 1 KABANJAHE</option>
-                                <option value="SMA NEGERI 1 KOLANG">SMA NEGERI 1 KOLANG</option>
-                                <option value="SMA NEGERI 1 KOTA SERANG">SMA NEGERI 1 KOTA SERANG</option>
-                                <option value="SMA NEGERI 1 KUALUH HULU">SMA NEGERI 1 KUALUH HULU</option>
-                                <option value="SMA NEGERI 1 LABUHAN DELI">SMA NEGERI 1 LABUHAN DELI</option>
-                                <option value="SMA NEGERI 1 LAGUBOTI">SMA NEGERI 1 LAGUBOTI</option>
-                                <option value="SMA NEGERI 1 LIMAPULUH">SMA NEGERI 1 LIMAPULUH</option>
-                                <option value="SMA NEGERI 1 LINTONG NIHUTA">SMA NEGERI 1 LINTONG NIHUTA</option>
-                                <option value="SMA NEGERI 1 LUBUK PAKAM">SMA NEGERI 1 LUBUK PAKAM</option>
-                                <option value="SMA NEGERI 1 LUMBAN JULU">SMA NEGERI 1 LUMBAN JULU</option>
-                                <option value="SMA NEGERI 1 MANDAU">SMA NEGERI 1 MANDAU</option>
-                                <option value="SMA NEGERI 1 MATAULI PANDAN">SMA NEGERI 1 MATAULI PANDAN</option>
-                                <option value="SMA NEGERI 1 MEDAN">SMA NEGERI 1 MEDAN</option>
-                                <option value="SMA NEGERI 1 ONANRUNGGU">SMA NEGERI 1 ONANRUNGGU</option>
-                                <option value="SMA NEGERI 1 PAGARAN">SMA NEGERI 1 PAGARAN</option>
-                                <option value="SMA NEGERI 1 PANCUR BATU">SMA NEGERI 1 PANCUR BATU</option>
-                                <option value="SMA NEGERI 1 PANGARIBUAN">SMA NEGERI 1 PANGARIBUAN</option>
-                                <option value="SMA NEGERI 1 PANOMBEIAN PANEI">SMA NEGERI 1 PANOMBEIAN PANEI</option>
-                                <option value="SMA NEGERI 1 PARMAKSIAN">SMA NEGERI 1 PARMAKSIAN</option>
-                                <option value="SMA NEGERI 1 PEMATANG RAYA">SMA NEGERI 1 PEMATANG RAYA</option>
-                                <option value="SMA NEGERI 1 PEMATANG SIANTAR">SMA NEGERI 1 PEMATANG SIANTAR</option>
-                                <option value="SMA NEGERI 1 PERCIT SEI TUAN">SMA NEGERI 1 PERCIT SEI TUAN</option>
-                                <option value="SMA NEGERI 1 PINTUPOHAN MERANTI">SMA NEGERI 1 PINTUPOHAN MERANTI</option>
-                                <option value="SMA NEGERI 1 RANTAU UTARA">SMA NEGERI 1 RANTAU UTARA</option>
-                                <option value="SMA NEGERI 1 SIANJURMULAMULA">SMA NEGERI 1 SIANJURMULAMULA</option>
-                                <option value="SMA NEGERI 1 SIANTARNARUMONDA">SMA NEGERI 1 SIANTARNARUMONDA</option>
-                                <option value="SMA NEGERI 1 SIBOLGA">SMA NEGERI 1 SIBOLGA</option>
-                                <option value="SMA NEGERI 1 SIBORONGBORONG">SMA NEGERI 1 SIBORONGBORONG</option>
-                                <option value="SMA NEGERI 1 SILAEN">SMA NEGERI 1 SILAEN</option>
-                                <option value="SMA NEGERI 1 SIMANINDO">SMA NEGERI 1 SIMANINDO</option>
-                                <option value="SMA NEGERI 1 SIPOHOLON">SMA NEGERI 1 SIPOHOLON</option>
-                                <option value="SMA NEGERI 1 SUNGAI LALA">SMA NEGERI 1 SUNGAI LALA</option>
-                                <option value="SMA NEGERI 1 TAMBUSAI">SMA NEGERI 1 TAMBUSAI</option>
-                                <option value="SMA NEGERI 1 TANAH JAWA">SMA NEGERI 1 TANAH JAWA</option>
-                                <option value="SMA NEGERI 1 TARUTUNG">SMA NEGERI 1 TARUTUNG</option>
-                                <option value="SMA NEGERI 1 TEBING TINGGI">SMA NEGERI 1 TEBING TINGGI</option>
-                                <option value="SMA NEGERI 1 ULUAN">SMA NEGERI 1 ULUAN</option>
-                                <option value="SMA NEGERI 11 MEDAN">SMA NEGERI 11 MEDAN</option>
-                                <option value="SMA NEGERI 12 MEDAN">SMA NEGERI 12 MEDAN</option>
-                                <option value="SMA NEGERI 14 MEDAN">SMA NEGERI 14 MEDAN</option>
-                                <option value="SMA NEGERI 15 MEDAN">SMA NEGERI 15 MEDAN</option>
-                                <option value="SMA NEGERI 17 MEDAN">SMA NEGERI 17 MEDAN</option>
-                                <option value="SMA NEGERI 18 MEDAN">SMA NEGERI 18 MEDAN</option>
-                                <option value="SMA NEGERI 2 BALIGE">SMA NEGERI 2 BALIGE</option>
-                                <option value="SMA NEGERI 2 BANDAR">SMA NEGERI 2 BANDAR</option>
-                                <option value="SMA NEGERI 2 DOLOKSANGGUL">SMA NEGERI 2 DOLOKSANGGUL</option>
-                                <option value="SMA NEGERI 2 LINTONGNIHUTA"> SMA NEGERI 2 LINTONGNIHUTA</option>
-                                <option value="SMA NEGERI 2 LUBUK PAKAM">SMA NEGERI 2 LUBUK PAKAM</option>
-                                <option value="SMA NEGERI 2 MANDAU">SMA NEGERI 2 MANDAU</option>
-                                <option value="SMA NEGERI 2 MEDAN">SMA NEGERI 2 MEDAN</option>
-                                <option value="SMA NEGERI 1 MEDAN">SMA NEGERI 1 MEDAN</option>
-                                <option value="SMA NEGERI 1 SMA NEGERI 2 PANGURURAN">SMA NEGERI 1 SMA NEGERI 2 PANGURURAN</option>
-                                <option value="SMA NEGERI 2 PEMATANG SIANTAR">SMA NEGERI 2 PEMATANG SIANTAR</option>
-                                <option value="SMA NEGERI 2 RANTAU SELATAN">SMA NEGERI 2 RANTAU SELATAN</option>
-                                <option value="SMA NEGERI 2 RANTAU UTARA">SMA NEGERI 2 RANTAU UTARA</option>
-                                <option value="SMA NEGERI 2 SIBOLGA">SMA NEGERI 2 SIBOLGA</option>
-                                <option value="SMA NEGERI 2 SIBORONGBORONG">SMA NEGERI 2 SIBORONGBORONG</option>
-                                <option value="SMA NEGERI 2 SILAEN">SMA NEGERI 2 SILAEN</option>
-                                <option value="SMA NEGERI 2 TAMBUN SELATAN">SMA NEGERI 2 TAMBUN SELATAN</option>
-                                <option value="SMA NEGERI 2 TARUTUNG">SMA NEGERI 2 TARUTUNG</option>
-                                <!-- <option value="101">SMA NEGERI 21 MEDAN</option>
-                                <option value="102">SMA NEGERI 3 MEDAN</option>
-                                <option value="103">SMA NEGERI 3 PADANG SIDEMPUAN</option>
-                                <option value="104">SMA NEGERI 3 PEMATANG SIANTAR</option>
-                                <option value="105">SMA NEGERI 3 TARUTUNG</option>
-                                <option value="106">SMA NEGERI 3 TEBING TINGGI</option>
-                                <option value="107">SMA NEGERI 4 BINJAI</option>
-                                <option value="108">SMA NEGERI 4 MEDAN</option>
-                                <option value="109">SMA NEGERI 4 PEMATANG SIANTAR</option>
-                                <option value="110">SMA NEGERI 4 SIBOLGA</option>
-                                <option value="111">SMA NEGERI 5 MEDAN</option>
-                                <option value="112">SMA NEGERI 54</option>
-                                <option value="113">SMA NEGERI 6 MANDAU</option>
-                                <option value="114">SMA NEGERI 1 TEBING TINGGI</option>
-                                <option value="115">SMA NEGERI 6 MEDAN</option>
-                                <option value="116">SMA NEGERI 6 PEMATANG SIANTAR</option>
-                                <option value="117">SMA NEGERI 7 MEDAN</option>
-                                <option value="118">SMA NEGERI 8 MEDAN</option>
-                                <option value="119">SMA NEGERI 9 MEDAN</option>
-                                <option value="120">SMA NUSANTARA LUBUK PAKAM</option>
-                                <option value="121">SMA PELITA PEMATANG SIANTAR</option>
-                                <option value="122">SMA RK SANTA MARIA PAKKAT</option>
-                                <option value="123">SMA RK SERDANG MURNI</option>
-                                <option value="124">SMA SANTA LUSIA SEI ROTAN</option>
-                                <option value="125">SMA SANTA MARIA KABANJAHE</option>
-                                <option value="126">SMA SANTA MARIA MEDAN</option>
-                                <option value="127">SMA SANTO MICHAEL PANGURURAN</option>
-                                <option value="128">SMA SANTO THOMAS 1 MEDAN</option>
-                                <option value="129">SMA SANTO THOMAS 2 MEDAN</option>
-                                <option value="130">SMA SANTO THOMAS 3 MEDAN</option>
-                                <option value="131">SMA SANTO YOSEPH MEDAN</option>
-                                <option value="132">SMA ST. MARIA TARUTUNG</option>
-                                <option value="133">SMA SUTOMO 1 MEDAN</option>
-                                <option value="134">SMA SUTOMO 2 MEDAN</option>
-                                <option value="135">SMA SW. HKBP PARAPAT</option>
-                                <option value="136">SMA SW. HKBP PEMATANG SIANTAR</option>
-                                <option value="137">SMA SWASTA ADVENT PEKANBARU</option>
-                                <option value="138">SMA SWASTA BUDISATRYA</option>
-                                <option value="139">SMA SWASTA F.TANDEAN TEBING TINGGI</option>
-                                <option value="140">SMA SWASTA R.A KARTINI SEI RAMPAH</option>
-                                <option value="141">SMA SWASTA SULTAN ISKANDAR MUDA</option>
-                                <option value="142">SMA TELADAN MEDAN</option>
-                                <option value="143">SMA TELADAN PEMATANG SIANTAR</option>
-                                <option value="144">SMA TRI RATNA SIBOLGA</option>
-                                <option value="145">SMA UNGGUL DEL</option>
-                                <option value="146">SMA W. R. SUPRATMAN 2 MEDAN</option>
-                                <option value="147">SMA WIDYA NUSANTARA</option>
-                                <option value="148">SMA YADIKA 3 TAMBUN</option>
-                                <option value="149">SMK BINTANG TIMUR PEMATANG SIANTAR</option>
-                                <option value="150">SMK GKPS-2</option>
-                                <option value="151">SMK NEGERI 1 BALIGE</option>
-                                <option value="152">SMK NEGERI 1 BERINGIN</option>
-                                <option value="153">SMK NEGERI 1 LAGUBOTI</option>
-                                <option value="154">SMK NEGERI 1 LUBUK PAKAM</option>
-                                <option value="155">SMK NEGERI 1 LUMBANJULU</option>
-                                <option value="156">SMK NEGERI 1 MEDAN</option>
-                                <option value="157">SMK NEGERI 1 PERCUT SEI TUAN</option>
-                                <option value="158">SMK NEGERI 1 SIATAS BARITA</option>
-                                <option value="159">SMK NEGERI 1 SIBORONGBORONG</option>
-                                <option value="160">SMK NEGERI 1 SIGUMPAR</option>
-                                <option value="161">SMK NEGERI 2 BALIGE</option>
-                                <option value="162">SMK NEGERI 9 MEDAN</option>
-                                <option value="163">SMK PARBINA NUSANTARA</option>
-                                <option value="164">SMK PGRI 07 BALIGE</option>
-                                <option value="165">SMK PRESTASI PRIMA JAKARTA TIMUR</option>
-                                <option value="166">SMK ST NAHANSON PARAPAT SIPOHOLON</option>
-                                <option value="167">SMK SW. ARJUNA LAGUBOTI</option>
-                                <option value="168">SMK SW. PERSIAPAN</option>
-                                <option value="169">SMK SWASTA ABDI SEJATI</option>
-                                <option value="170">SMK SWASTA BATAM BUSINESS SCHOOL</option>
-                                <option value="171">SMK SWASTA KARYA TARUTUNG</option>
-                                <option value="172">SMK SWASTA TRISULA DOLOKSANGGUL</option>
-                                <option value="173">SMK TELADAN MEDAN</option>
-                                <option value="174">SMK TELKOM SANDHY PUTRA MEDAN</option>
-                                <option value="175">SMK TI METHODIST 8 MEDAN</option>
-                                <option value="176">SMK YADIKA 6</option>
-                                <option value="177">SMK Yayasan Soposurung</option>
-                                <option value="178">TAMAN SISWA</option>
-                                <option value="179">YP. TRISAKTI LAGUBOTI</option> -->
-                            </select>
-                        </div>
-                        <!-- Submit Button-->
-                        <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Predict</button>
-                    </form>
-    
-                    {% if school_name %}
-                    <div class="hasil">
-                        <p>Prediksi jumlah pendaftar calon mahasiswa baru tahun 2023 dari {{ school_name }} adalah {{ prediction_ann}}.</p>
-                    </div>
-                    {% endif %}
-    
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Copyright Section-->
-    <div class="copyright py-4 text-center text-white fixed-bottom">
-        <div class="container"><small>Copyright &copy; Del Predict 2023</small></div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href=""{{ url_for('home') }}""><img src="{{ url_for('static', filename='../static/image/logo.png')}}" alt="" width="100%" height="auto"></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="{{ url_for('svr') }}">SVR</a></li>
+          <li><a class="nav-link scrollto" href="{{ url_for('ann') }}">ANN</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
     </div>
+  </header><!-- End Header -->
+
+  <section class="page-section pt-7" id="contact">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-xl-6 text-center">
+          <form action="{{ url_for('predict_ann') }}" method="post">
+              <!-- Name input-->
+              <div class="form-floating mb-3">
+                  <select name="school" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Pilih Nama Sekolah</option>
+                    <option value="SMA ABDI SEJATI PERDAGANGAN">SMA ABDI SEJATI PERDAGANGAN</option>
+                    <option value="SMA ADVENT PEMATANG SIANTAR">SMA ADVENT PEMATANG SIANTAR</option>
+                    <option value="SMA ASISI PEMATANG SIANTAR">SMA ASISI PEMATANG SIANTAR</option>
+                    <option value="SMA BINTANG TIMUR BALIGE">SMA BINTANG TIMUR BALIGE</option>
+                    <option value="SMA BINTANG TIMUR PEMATANG SIANTAR">SMA BINTANG TIMUR PEMATANG SIANTAR</option>
+                    <option value="SMA BRIGJEN KATAMSO 1 MEDAN">SMA BRIGJEN KATAMSO 1 MEDAN</option>
+                    <option value="SMA BUDI MULIA PEMATANG SIANTAR">SMA BUDI MULIA PEMATANG SIANTAR</option>
+                    <option value="SMA BUDI MURNI 1 MEDAN">SMA BUDI MURNI 1 MEDAN</option>
+                    <option value="SMA BUDI MURNI 2 MEDAN">SMA BUDI MURNI 2 MEDAN</option>
+                    <option value="SMA CAHAYA MEDAN">SMA CAHAYA MEDAN</option>
+                    <option value="SMA CINTA RAKYAT PEMATANG SIANTAR">SMA CINTA RAKYAT PEMATANG SIANTAR</option>
+                    <option value="SMA FRANSISKUS SIBOLGA">SMA FRANSISKUS SIBOLGA</option>
+                    <option value="SMA GLOBAL PERSADA MANDIRI">SMA GLOBAL PERSADA MANDIRI</option>
+                    <option value="SMA KALAM KUDUS MEDAN">SMA KALAM KUDUS MEDAN</option>
+                    <option value="SMA KAMPUS FKIP HKBP NOMENSEN">SMA KAMPUS FKIP HKBP NOMENSEN</option>
+                    <option value="SMA KARTIKA JAYA 1-4">SMA KARTIKA JAYA 1-4</option>
+                    <option value="SMA KATOLIK KABANJAHE">SMA KATOLIK KABANJAHE</option>
+                    <option value="SMA KATOLIK SIBOLGA">SMA KATOLIK SIBOLGA</option>
+                    <option value="SMA KATOLIK TRISAKTI MEDAN">SMA KATOLIK TRISAKTI MEDAN</option>
+                    <option value="SMA KRISTEN IMMANUEL">SMA KRISTEN IMMANUEL</option>
+                    <option value="SMA KRISTEN KALAM KUDUS PEMATANG SIANTAR">SMA KRISTEN KALAM KUDUS PEMATANG SIANTAR</option>
+                    <option value="SMA MANDIRI TANGERANG">SMA MANDIRI TANGERANG</option>
+                    <option value="SMA MARKUS MEDAN">SMA MARKUS MEDAN</option>
+                    <option value="SMA MARS PEMATANG SIANTAR">SMA MARS PEMATANG SIANTAR</option>
+                    <option value="SMA METHODIST 1 MEDAN">SMA METHODIST 1 MEDAN</option>
+                    <option value="SMA METHODIST 2 MEDAN">SMA METHODIST 2 MEDAN</option>
+                    <option value="SMA METHODIST 8 MEDAN">SMA METHODIST 8 MEDAN</option>
+                    <option value="SMA METHODIST-AN PANCUR BATU">SMA METHODIST-AN PANCUR BATU</option>
+                    <option value="SMA NASRANI 1 MEDAN">SMA NASRANI 1 MEDAN</option>
+                    <option value="SMA NEGERI 1 BABELAN">SMA NEGERI 1 BABELAN</option>
+                    <option value="SMA NEGERI 1 BALIGE">SMA NEGERI 1 BALIGE</option>
+                    <option value="SMA NEGERI 1 BANDAR">SMA NEGERI 1 BANDAR</option>
+                    <option value="SMA NEGERI 1 BINJAI">SMA NEGERI 1 BINJAI</option>
+                    <option value="SMA NEGERI 1 DOLOK PANRIBUAN">SMA NEGERI 1 DOLOK PANRIBUAN</option>
+                    <option value="SMA NEGERI 1 DOLOK PARDAMEAN">SMA NEGERI 1 DOLOK PARDAMEAN</option>
+                    <option value="SMA NEGERI 1 DOLOK SANGGUL">SMA NEGERI 1 DOLOK SANGGUL</option>
+                    <option value="SMA NEGERI 1 GALANG DELI SERDANG">SMA NEGERI 1 GALANG DELI SERDANG</option>
+                    <option value="SMA NEGERI 1 GIRSANG SIPANGAN BOLON">SMA NEGERI 1 GIRSANG SIPANGAN BOLON</option>
+                    <option value="SMA NEGERI 1 HABINSARAN">SMA NEGERI 1 HABINSARAN</option>
+                    <option value="SMA NEGERI 1 KABANJAHE">SMA NEGERI 1 KABANJAHE</option>
+                    <option value="SMA NEGERI 1 KOLANG">SMA NEGERI 1 KOLANG</option>
+                    <option value="SMA NEGERI 1 KOTA SERANG">SMA NEGERI 1 KOTA SERANG</option>
+                    <option value="SMA NEGERI 1 KUALUH HULU">SMA NEGERI 1 KUALUH HULU</option>
+                    <option value="SMA NEGERI 1 LABUHAN DELI">SMA NEGERI 1 LABUHAN DELI</option>
+                    <option value="SMA NEGERI 1 LAGUBOTI">SMA NEGERI 1 LAGUBOTI</option>
+                    <option value="SMA NEGERI 1 LIMAPULUH">SMA NEGERI 1 LIMAPULUH</option>
+                    <option value="SMA NEGERI 1 LINTONG NIHUTA">SMA NEGERI 1 LINTONG NIHUTA</option>
+                    <option value="SMA NEGERI 1 LUBUK PAKAM">SMA NEGERI 1 LUBUK PAKAM</option>
+                    <option value="SMA NEGERI 1 LUMBAN JULU">SMA NEGERI 1 LUMBAN JULU</option>
+                    <option value="SMA NEGERI 1 MANDAU">SMA NEGERI 1 MANDAU</option>
+                    <option value="SMA NEGERI 1 MATAULI PANDAN">SMA NEGERI 1 MATAULI PANDAN</option>
+                    <option value="SMA NEGERI 1 MEDAN">SMA NEGERI 1 MEDAN</option>
+                    <option value="SMA NEGERI 1 ONANRUNGGU">SMA NEGERI 1 ONANRUNGGU</option>
+                    <option value="SMA NEGERI 1 PAGARAN">SMA NEGERI 1 PAGARAN</option>
+                    <option value="SMA NEGERI 1 PANCUR BATU">SMA NEGERI 1 PANCUR BATU</option>
+                    <option value="SMA NEGERI 1 PANGARIBUAN">SMA NEGERI 1 PANGARIBUAN</option>
+                    <option value="SMA NEGERI 1 PANOMBEIAN PANEI">SMA NEGERI 1 PANOMBEIAN PANEI</option>
+                    <option value="SMA NEGERI 1 PARMAKSIAN">SMA NEGERI 1 PARMAKSIAN</option>
+                    <option value="SMA NEGERI 1 PEMATANG RAYA">SMA NEGERI 1 PEMATANG RAYA</option>
+                    <option value="SMA NEGERI 1 PEMATANG SIANTAR">SMA NEGERI 1 PEMATANG SIANTAR</option>
+                    <option value="SMA NEGERI 1 PERCIT SEI TUAN">SMA NEGERI 1 PERCIT SEI TUAN</option>
+                    <option value="SMA NEGERI 1 PINTUPOHAN MERANTI">SMA NEGERI 1 PINTUPOHAN MERANTI</option>
+                    <option value="SMA NEGERI 1 RANTAU UTARA">SMA NEGERI 1 RANTAU UTARA</option>
+                    <option value="SMA NEGERI 1 SIANJURMULAMULA">SMA NEGERI 1 SIANJURMULAMULA</option>
+                    <option value="SMA NEGERI 1 SIANTARNARUMONDA">SMA NEGERI 1 SIANTARNARUMONDA</option>
+                    <option value="SMA NEGERI 1 SIBOLGA">SMA NEGERI 1 SIBOLGA</option>
+                    <option value="SMA NEGERI 1 SIBORONGBORONG">SMA NEGERI 1 SIBORONGBORONG</option>
+                    <option value="SMA NEGERI 1 SILAEN">SMA NEGERI 1 SILAEN</option>
+                    <option value="SMA NEGERI 1 SIMANINDO">SMA NEGERI 1 SIMANINDO</option>
+                    <option value="SMA NEGERI 1 SIPOHOLON">SMA NEGERI 1 SIPOHOLON</option>
+                    <option value="SMA NEGERI 1 SUNGAI LALA">SMA NEGERI 1 SUNGAI LALA</option>
+                    <option value="SMA NEGERI 1 TAMBUSAI">SMA NEGERI 1 TAMBUSAI</option>
+                    <option value="SMA NEGERI 1 TANAH JAWA">SMA NEGERI 1 TANAH JAWA</option>
+                    <option value="SMA NEGERI 1 TARUTUNG">SMA NEGERI 1 TARUTUNG</option>
+                    <option value="SMA NEGERI 1 TEBING TINGGI">SMA NEGERI 1 TEBING TINGGI</option>
+                    <option value="SMA NEGERI 1 ULUAN">SMA NEGERI 1 ULUAN</option>
+                    <option value="SMA NEGERI 11 MEDAN">SMA NEGERI 11 MEDAN</option>
+                    <option value="SMA NEGERI 12 MEDAN">SMA NEGERI 12 MEDAN</option>
+                    <option value="SMA NEGERI 14 MEDAN">SMA NEGERI 14 MEDAN</option>
+                    <option value="SMA NEGERI 15 MEDAN">SMA NEGERI 15 MEDAN</option>
+                    <option value="SMA NEGERI 17 MEDAN">SMA NEGERI 17 MEDAN</option>
+                    <option value="SMA NEGERI 18 MEDAN">SMA NEGERI 18 MEDAN</option>
+                    <option value="SMA NEGERI 2 BALIGE">SMA NEGERI 2 BALIGE</option>
+                    <option value="SMA NEGERI 2 BANDAR">SMA NEGERI 2 BANDAR</option>
+                    <option value="SMA NEGERI 2 DOLOKSANGGUL">SMA NEGERI 2 DOLOKSANGGUL</option>
+                    <option value="SMA NEGERI 2 LINTONGNIHUTA"> SMA NEGERI 2 LINTONGNIHUTA</option>
+                    <option value="SMA NEGERI 2 LUBUK PAKAM">SMA NEGERI 2 LUBUK PAKAM</option>
+                    <option value="SMA NEGERI 2 MANDAU">SMA NEGERI 2 MANDAU</option>
+                    <option value="SMA NEGERI 2 MEDAN">SMA NEGERI 2 MEDAN</option>
+                    <option value="SMA NEGERI 1 MEDAN">SMA NEGERI 1 MEDAN</option>
+                    <option value="SMA NEGERI 1 SMA NEGERI 2 PANGURURAN">SMA NEGERI 1 SMA NEGERI 2 PANGURURAN</option>
+                    <option value="SMA NEGERI 2 PEMATANG SIANTAR">SMA NEGERI 2 PEMATANG SIANTAR</option>
+                    <option value="SMA NEGERI 2 RANTAU SELATAN">SMA NEGERI 2 RANTAU SELATAN</option>
+                    <option value="SMA NEGERI 2 RANTAU UTARA">SMA NEGERI 2 RANTAU UTARA</option>
+                    <option value="SMA NEGERI 2 SIBOLGA">SMA NEGERI 2 SIBOLGA</option>
+                    <option value="SMA NEGERI 2 SIBORONGBORONG">SMA NEGERI 2 SIBORONGBORONG</option>
+                    <option value="SMA NEGERI 2 SILAEN">SMA NEGERI 2 SILAEN</option>
+                    <option value="SMA NEGERI 2 TAMBUN SELATAN">SMA NEGERI 2 TAMBUN SELATAN</option>
+                    <option value="SMA NEGERI 2 TARUTUNG">SMA NEGERI 2 TARUTUNG</option>
+                    <!-- <option value="101">SMA NEGERI 21 MEDAN</option>
+                    <option value="102">SMA NEGERI 3 MEDAN</option>
+                    <option value="103">SMA NEGERI 3 PADANG SIDEMPUAN</option>
+                    <option value="104">SMA NEGERI 3 PEMATANG SIANTAR</option>
+                    <option value="105">SMA NEGERI 3 TARUTUNG</option>
+                    <option value="106">SMA NEGERI 3 TEBING TINGGI</option>
+                    <option value="107">SMA NEGERI 4 BINJAI</option>
+                    <option value="108">SMA NEGERI 4 MEDAN</option>
+                    <option value="109">SMA NEGERI 4 PEMATANG SIANTAR</option>
+                    <option value="110">SMA NEGERI 4 SIBOLGA</option>
+                    <option value="111">SMA NEGERI 5 MEDAN</option>
+                    <option value="112">SMA NEGERI 54</option>
+                    <option value="113">SMA NEGERI 6 MANDAU</option>
+                    <option value="114">SMA NEGERI 1 TEBING TINGGI</option>
+                    <option value="115">SMA NEGERI 6 MEDAN</option>
+                    <option value="116">SMA NEGERI 6 PEMATANG SIANTAR</option>
+                    <option value="117">SMA NEGERI 7 MEDAN</option>
+                    <option value="118">SMA NEGERI 8 MEDAN</option>
+                    <option value="119">SMA NEGERI 9 MEDAN</option>
+                    <option value="120">SMA NUSANTARA LUBUK PAKAM</option>
+                    <option value="121">SMA PELITA PEMATANG SIANTAR</option>
+                    <option value="122">SMA RK SANTA MARIA PAKKAT</option>
+                    <option value="123">SMA RK SERDANG MURNI</option>
+                    <option value="124">SMA SANTA LUSIA SEI ROTAN</option>
+                    <option value="125">SMA SANTA MARIA KABANJAHE</option>
+                    <option value="126">SMA SANTA MARIA MEDAN</option>
+                    <option value="127">SMA SANTO MICHAEL PANGURURAN</option>
+                    <option value="128">SMA SANTO THOMAS 1 MEDAN</option>
+                    <option value="129">SMA SANTO THOMAS 2 MEDAN</option>
+                    <option value="130">SMA SANTO THOMAS 3 MEDAN</option>
+                    <option value="131">SMA SANTO YOSEPH MEDAN</option>
+                    <option value="132">SMA ST. MARIA TARUTUNG</option>
+                    <option value="133">SMA SUTOMO 1 MEDAN</option>
+                    <option value="134">SMA SUTOMO 2 MEDAN</option>
+                    <option value="135">SMA SW. HKBP PARAPAT</option>
+                    <option value="136">SMA SW. HKBP PEMATANG SIANTAR</option>
+                    <option value="137">SMA SWASTA ADVENT PEKANBARU</option>
+                    <option value="138">SMA SWASTA BUDISATRYA</option>
+                    <option value="139">SMA SWASTA F.TANDEAN TEBING TINGGI</option>
+                    <option value="140">SMA SWASTA R.A KARTINI SEI RAMPAH</option>
+                    <option value="141">SMA SWASTA SULTAN ISKANDAR MUDA</option>
+                    <option value="142">SMA TELADAN MEDAN</option>
+                    <option value="143">SMA TELADAN PEMATANG SIANTAR</option>
+                    <option value="144">SMA TRI RATNA SIBOLGA</option>
+                    <option value="145">SMA UNGGUL DEL</option>
+                    <option value="146">SMA W. R. SUPRATMAN 2 MEDAN</option>
+                    <option value="147">SMA WIDYA NUSANTARA</option>
+                    <option value="148">SMA YADIKA 3 TAMBUN</option>
+                    <option value="149">SMK BINTANG TIMUR PEMATANG SIANTAR</option>
+                    <option value="150">SMK GKPS-2</option>
+                    <option value="151">SMK NEGERI 1 BALIGE</option>
+                    <option value="152">SMK NEGERI 1 BERINGIN</option>
+                    <option value="153">SMK NEGERI 1 LAGUBOTI</option>
+                    <option value="154">SMK NEGERI 1 LUBUK PAKAM</option>
+                    <option value="155">SMK NEGERI 1 LUMBANJULU</option>
+                    <option value="156">SMK NEGERI 1 MEDAN</option>
+                    <option value="157">SMK NEGERI 1 PERCUT SEI TUAN</option>
+                    <option value="158">SMK NEGERI 1 SIATAS BARITA</option>
+                    <option value="159">SMK NEGERI 1 SIBORONGBORONG</option>
+                    <option value="160">SMK NEGERI 1 SIGUMPAR</option>
+                    <option value="161">SMK NEGERI 2 BALIGE</option>
+                    <option value="162">SMK NEGERI 9 MEDAN</option>
+                    <option value="163">SMK PARBINA NUSANTARA</option>
+                    <option value="164">SMK PGRI 07 BALIGE</option>
+                    <option value="165">SMK PRESTASI PRIMA JAKARTA TIMUR</option>
+                    <option value="166">SMK ST NAHANSON PARAPAT SIPOHOLON</option>
+                    <option value="167">SMK SW. ARJUNA LAGUBOTI</option>
+                    <option value="168">SMK SW. PERSIAPAN</option>
+                    <option value="169">SMK SWASTA ABDI SEJATI</option>
+                    <option value="170">SMK SWASTA BATAM BUSINESS SCHOOL</option>
+                    <option value="171">SMK SWASTA KARYA TARUTUNG</option>
+                    <option value="172">SMK SWASTA TRISULA DOLOKSANGGUL</option>
+                    <option value="173">SMK TELADAN MEDAN</option>
+                    <option value="174">SMK TELKOM SANDHY PUTRA MEDAN</option>
+                    <option value="175">SMK TI METHODIST 8 MEDAN</option>
+                    <option value="176">SMK YADIKA 6</option>
+                    <option value="177">SMK Yayasan Soposurung</option>
+                    <option value="178">TAMAN SISWA</option>
+                    <option value="179">YP. TRISAKTI LAGUBOTI</option> -->
+                  </select>
+              </div>
+              <!-- Submit Button-->
+              <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Predict</button>
+          </form>
+
+          {% if school_name %}
+          <div class="hasil">
+              <p>Prediksi jumlah pendaftar calon mahasiswa baru tahun 2023 dari {{ school_name }} adalah {{ prediction_ann}}.</p>
+          </div>
+          {% endif %}
+
+      </div>
+  </div>
+</section>
+
+
 </body>
+
 </html>
