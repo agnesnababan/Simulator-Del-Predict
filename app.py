@@ -15,7 +15,6 @@ model_svr = pickle.load(open('svr-model-new.pkl','rb'))
 
 # load data
 data = pd.read_csv('data_without_norm.csv')
-# mangasi
 # define function to get previous year enrollments
 def get_previous_enrollments(school_name):
     # get data for selected school
@@ -48,7 +47,6 @@ def ann():
 @app.route('/predict-ann', methods=['GET','POST'])
 def predict_ann():
     scaler = MinMaxScaler()
-    # get user input
     # get user input
     school_name = request.form['school']
     school_data = data[data['Nama Sekolah'] == school_name]
