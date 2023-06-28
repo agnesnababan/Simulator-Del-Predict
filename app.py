@@ -5,7 +5,6 @@ import pandas as pd
 import tensorflow as tf
 import pickle
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
 
 
 app = Flask(__name__)
@@ -46,7 +45,6 @@ def ann():
 # Define the prediction route
 @app.route('/predict-ann', methods=['GET','POST'])
 def predict_ann():
-    scaler = MinMaxScaler()
     # get user input
     school_name = request.form['school']
     school_data = data[data['Nama Sekolah'] == school_name]
